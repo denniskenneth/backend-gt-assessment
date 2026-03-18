@@ -6,7 +6,9 @@ const auth = (req, res, next) => {
         return res.status(401).json({ message: "Invalid UserId" });
     }
     req.userId = Number(userId);
-
+    if (isNaN(req.userId)) {
+        return res.status(401).json({ message: "Invalid UserId" });
+    }
     next();
 }
 
